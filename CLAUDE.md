@@ -1,60 +1,60 @@
 # CLAUDE.md
 
-This file documents the structure, conventions, and development workflow for this repository. It is intended for AI assistants (Claude Code and others) working on this codebase.
+このファイルはリポジトリの構成・規約・開発フローを説明するものです。このコードベースで作業するAIアシスタント（Claude Codeなど）を対象としています。
 
-## Repository Overview
+## リポジトリ概要
 
-**`gshu710.github.io`** is a personal GitHub Pages site. GitHub automatically serves the `main` branch from `https://gshu710.github.io/`.
+**`gshu710.github.io`** は個人の GitHub Pages サイトです。`main` ブランチの内容が `https://gshu710.github.io/` として自動的に公開されます。
 
-## Current State
+## 現在の状態
 
-The site is in its earliest form — a single static HTML file:
+サイトは最小構成で、静的HTMLファイルが1つだけ存在します。
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Homepage; currently renders a plain `<h1>Hello</h1>` |
+| ファイル | 用途 |
+|----------|------|
+| `index.html` | トップページ。現在は `<h1>Hello</h1>` のみ表示 |
 
-No build tools, frameworks, package managers, or CI pipelines are configured yet.
+ビルドツール・フレームワーク・パッケージマネージャー・CIパイプラインは未設定です。
 
-## Development Workflow
+## 開発フロー
 
-### Branches
+### ブランチ運用
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production branch — GitHub Pages serves from here |
-| `claude/*` | AI-driven feature branches; open a PR into `main` |
+| ブランチ | 用途 |
+|----------|------|
+| `main` | 本番ブランチ。GitHub Pages はここから配信される |
+| `claude/*` | AI が作業するフィーチャーブランチ。`main` へ PR を出す |
 
-### Making Changes
+### 変更手順
 
-Because there is no build step, changes to `index.html` (or any future static assets) are immediately reflected once merged to `main` and GitHub Pages rebuilds (usually within 30–60 seconds).
+ビルドステップがないため、`index.html`（または今後追加する静的アセット）を変更して `main` にマージすると、GitHub Pages の再ビルド（通常30〜60秒）後に反映されます。
 
 ```bash
-# Work on the designated feature branch
-git checkout -b claude/<short-description>
+# フィーチャーブランチを作成して作業
+git checkout -b claude/<短い説明>
 
-# Edit files, then commit
-git add <files>
-git commit -m "concise description of change"
+# ファイルを編集してコミット
+git add <ファイル>
+git commit -m "変更内容を簡潔に記述"
 
-# Push and open a PR into main
-git push -u origin claude/<short-description>
+# プッシュして main へ PR を作成
+git push -u origin claude/<短い説明>
 ```
 
-### Deployment
+### デプロイ
 
-Deployment is automatic: every push to `main` triggers a GitHub Pages rebuild. No manual deploy step is needed.
+デプロイは自動です。`main` へのプッシュが GitHub Pages の再ビルドをトリガーするため、手動のデプロイ手順は不要です。
 
-## Conventions
+## 規約
 
-- **No build toolchain** — keep assets as plain HTML/CSS/JS unless a framework is explicitly introduced.
-- **Commit messages** — use lowercase imperative mood, e.g. `add navigation bar`, `fix broken link`.
-- **File names** — lowercase with hyphens (`about-me.html`, `styles/main.css`).
-- **No generated files committed** — if a build tool is added later, add its output directory to `.gitignore` and document it here.
+- **ビルドツールなし** — フレームワークを明示的に導入しない限り、HTML/CSS/JS のプレーンファイルで管理する。
+- **コミットメッセージ** — 小文字の命令形で記述する（例：`add navigation bar`、`fix broken link`）。
+- **ファイル名** — 小文字とハイフンを使用する（例：`about-me.html`、`styles/main.css`）。
+- **生成ファイルのコミット禁止** — ビルドツールを追加した場合は出力ディレクトリを `.gitignore` に追加し、このファイルに記録する。
 
-## Adding New Pages or Assets
+## ページ・アセットの追加
 
-Suggested layout when the site grows:
+サイトが成長した際に推奨するディレクトリ構成：
 
 ```
 index.html
@@ -67,4 +67,4 @@ assets/
   images/
 ```
 
-Update this file whenever new directories, tooling, or conventions are introduced.
+新しいディレクトリ・ツール・規約を追加した際は、このファイルも合わせて更新してください。

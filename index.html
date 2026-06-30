@@ -1,1 +1,187 @@
-<!DOCTYPE html><html><body><h1>Hello</h1></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gshu710 - AI伴侶ダッシュボード</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #7c6af7;
+      --text: #e8e8e8;
+      --muted: #888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    header h1 { font-size: 1.4rem; font-weight: 600; }
+    header p { color: var(--muted); font-size: 0.85rem; }
+    .badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+    .card h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .principle {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+    .principle-num {
+      background: var(--accent);
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .principle-text strong { display: block; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .principle-text span { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+    .file-tree {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      line-height: 2;
+      color: var(--muted);
+    }
+    .file-tree .hl { color: var(--accent); }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .status-row:last-child { border-bottom: none; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; display: inline-block; margin-right: 0.5rem; }
+    footer {
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>gshu710's AI伴侶</h1>
+      <p>専属エージェント &amp; ナレッジベース</p>
+    </div>
+    <span class="badge">ACTIVE</span>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>基本原則</h2>
+      <div class="principle">
+        <div class="principle-num">1</div>
+        <div class="principle-text">
+          <strong>資産蓄積</strong>
+          <span>すべてのやり取りを /knowledge/ に記録し、将来の資産として蓄積する</span>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">2</div>
+        <div class="principle-text">
+          <strong>文脈の継承</strong>
+          <span>過去の会話・決断を参照し、一貫性のある回答を維持する</span>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">3</div>
+        <div class="principle-text">
+          <strong>検索の代替</strong>
+          <span>ググる前にAIに相談。調査結果も知識として保存する</span>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">4</div>
+        <div class="principle-text">
+          <strong>先回り提案</strong>
+          <span>依頼の範囲を超えて、関連する改善・注意点を自発的に提示する</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>ナレッジ構成</h2>
+      <div class="file-tree">
+        <div>📁 knowledge/</div>
+        <div>&nbsp;&nbsp;<span class="hl">profile.md</span> &nbsp;— 基本情報・好み</div>
+        <div>&nbsp;&nbsp;<span class="hl">patches.md</span> &nbsp;— 改善要求の蓄積</div>
+        <div>&nbsp;&nbsp;📁 tasks/ &nbsp;&nbsp;&nbsp;— タスク記録</div>
+        <div>&nbsp;&nbsp;📁 references/ — よく使う情報</div>
+        <div>&nbsp;&nbsp;📁 decisions/ &nbsp;— 重要な決断と理由</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>現在のステータス</h2>
+      <div class="status-row">
+        <span><span class="dot"></span>セットアップ</span>
+        <span style="color:#4ade80">完了</span>
+      </div>
+      <div class="status-row">
+        <span><span class="dot" style="background:#fbbf24"></span>プロフィール記入</span>
+        <span style="color:#fbbf24">未完了</span>
+      </div>
+      <div class="status-row">
+        <span><span class="dot" style="background:#fbbf24"></span>リファレンス登録</span>
+        <span style="color:#fbbf24">未完了</span>
+      </div>
+      <div class="status-row">
+        <span><span class="dot" style="background:#888"></span>パッチ蓄積中</span>
+        <span style="color:#888">運用中</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>gshu710.github.io &mdash; AI伴侶システム &mdash; 最終更新: 2026-06-30</p>
+  </footer>
+</body>
+</html>
